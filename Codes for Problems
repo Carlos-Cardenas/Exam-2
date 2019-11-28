@@ -1,0 +1,38 @@
+
+
+def stoneGame(self, p):
+        n = len(p)
+        dp = [[0] * n for i in range(n)]
+        for i in range(n): dp[i][i] = p[i]
+        for d in range(1, n):
+            for i in range(n - d):
+                dp[i][i + d] = max(p[i] - dp[i + 1][i + d], p[i + d] - dp[i][i + d - 1])
+        return dp[0][-1] > 0
+
+
+
+
+class Solution(object):
+    def minFallingPathSum(self, A):
+        while len(A) >= 2:
+            row = A.pop()            
+            for i in xrange(len(row)):
+                A[-1][i] += min(row[max(0,i-1): min(len(row), i+2)])
+        return min(A[0])
+        
+        
+      
+ 
+ def perfSquares(n): 
+  
+     if n <= 3: 
+        return n;
+    mx = n 
+    for i in range(1, n + 1): 
+        temp = i * i; 
+        if temp > n: 
+            break
+        else: 
+            mx = min(mx, 1 + perfSquares(n  - temp)) 
+    return mx;
+
